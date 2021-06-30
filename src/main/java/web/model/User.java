@@ -3,8 +3,8 @@ package web.model;
 public class User {
 
     int id;
-    String name;
-    String surName;
+    private String name;
+    private String surName;
 
     public User(int id, String name, String surName) {
         this.id = id;
