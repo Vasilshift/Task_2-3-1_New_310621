@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import web.dao.UserDao;
+import web.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +24,24 @@ public class UsersController {
 	public String index(Model model) {
 
 		model.addAttribute("users", userDao.index());
-
-//		List<String> messages = new ArrayList<>();
-//		messages.add("Show all users from table ");
-//		model.addAttribute("messages", messages);
-
 		return "index";
 	}
 
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
 		model.addAttribute("user", userDao.show(id));
-
 		return "show";
 	}
 
-	
+	@GetMapping("/new")
+	public String newUser(Model model) {
+		model.addAttribute("user", new User());
+		return "new";
+	}
+
+	@PostMapping()
+	public String create(@ModelAttribute("user") User user) {
+		userDao.save(user);
+		return "redirect:/";
+	}
 }
