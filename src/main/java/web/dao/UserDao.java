@@ -99,7 +99,7 @@ public class UserDao {
     public void delete(int id) {
         try {
             PreparedStatement preparedStatement =
-                connection.prepareStatement("DELETE FROMusers WHERE id=?");
+                connection.prepareStatement("DELETE FROM users WHERE id=?");
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
