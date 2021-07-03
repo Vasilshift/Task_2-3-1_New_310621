@@ -4,19 +4,19 @@ import jakarta.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="users")
+@Entity
+@Table(name="users")
 public class User {
 
-    //@Id
+    @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //@Column(name="name")
+    @Column(name="name")
     //@NotEmpty(message="Not valid")
     private String name;
 
-    //@Column(name="surname")
+    @Column(name="surname")
     //@NotEmpty(message="Not valid")
     private String surName;
 

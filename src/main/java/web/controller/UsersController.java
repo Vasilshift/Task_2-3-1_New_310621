@@ -15,6 +15,7 @@ public class UsersController {
 
 	private final UserDao userDao;
 
+	@Autowired
 	public UsersController(UserDao userDao) {
 		this.userDao = userDao;
 	}
