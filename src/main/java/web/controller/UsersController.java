@@ -37,10 +37,7 @@ public class UsersController {
 	}
 
 	@PostMapping()
-	public String create(@ModelAttribute("user") @Valid User user,
-						 BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
-			return "people/new";
+	public String create(@ModelAttribute("user") User user) {
 		userDao.save(user);
 		return "redirect:/people";
 	}

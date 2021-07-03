@@ -71,10 +71,12 @@ public class UserDao {
 
     public void save(User user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into users VALUES(?, ?)");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getSurName());
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into users VALUES(?, ?, ?)");
+            preparedStatement.setInt(1, USER_COUNT++);
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getSurName());
             preparedStatement.executeUpdate();
+            System.out.println("user added in DB");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
