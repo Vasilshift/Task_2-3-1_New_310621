@@ -3,12 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All users</title>
+    <title>All users page Index</title>
 </head>
 <body>
+<h2>All users page Index</h2>
 <div th:each="user : ${users}">
 
-    <a th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a>
+    <a th:href="@{/users/{id}(id=${user.getId()})}"
+       th:text="${user.getName()}">user</a>
 
 </div>
 

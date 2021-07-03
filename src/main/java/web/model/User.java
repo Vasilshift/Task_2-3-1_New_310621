@@ -2,18 +2,18 @@ package web.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="users")
+//@Entity
+//@Table(name="users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="name")
+    //@Column(name="name")
     private String name;
 
-    @Column(name="surname")
+    //@Column(name="surname")
     private String surName;
 
     public User(){
@@ -49,12 +49,12 @@ public class User {
         this.surName = surName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surName='" + surName + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", surName='" + surName + '\'' +
+//                '}';
+//    }
 }
