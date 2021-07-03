@@ -37,10 +37,10 @@ public class HibernamteCofig {
         @Bean
         public DataSource dataSource() {
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
-            dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-            dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-            dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-            dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+            dataSource.setDriverClassName(environment.getRequiredProperty("db.Driver"));
+            dataSource.setUrl(environment.getRequiredProperty("db.url"));
+            dataSource.setUsername(environment.getRequiredProperty("db.username"));
+            dataSource.setPassword(environment.getRequiredProperty("db.password"));
             return dataSource;
         }
 
@@ -48,7 +48,7 @@ public class HibernamteCofig {
         public LocalSessionFactoryBean sessionFactory() {
             LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
             sessionFactory.setDataSource(dataSource());
-            sessionFactory.setPackagesToScan("testgroup.filmography.model");
+            sessionFactory.setPackagesToScan("web.model");
             sessionFactory.setHibernateProperties(hibernateProperties());
             return sessionFactory;
         }
