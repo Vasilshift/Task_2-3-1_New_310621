@@ -9,7 +9,7 @@
 <h2>All users page Index</h2>
 <div th:each="user : ${users}">
 
-    <a th:href="@{/users/{id}(id=${user.getId()})}"
+    <a th:href="@{/people/{id}(id=${user.getId()})}"
        th:text="${user.getName()}">user</a>
 
 </div>
@@ -17,7 +17,7 @@
 <br/>
 <hr/>
 
-<a href="/Task_2_3_1_New_310621_war_exploded/new">Create new user</a>
+<a href="/people/new">Create new user</a>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 package web.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 import javax.persistence.*;
 
 //@Entity
@@ -11,9 +13,11 @@ public class User {
     private int id;
 
     //@Column(name="name")
+    //@NotEmpty(message="Not valid")
     private String name;
 
     //@Column(name="surname")
+    //@NotEmpty(message="Not valid")
     private String surName;
 
     public User(){
