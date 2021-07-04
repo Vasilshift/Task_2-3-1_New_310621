@@ -10,9 +10,9 @@ import java.util.List;
 @Component
 public interface UserDao {
 
-    List<User> allUsers();
+    List<User> getAll();
 
-    User show (int id);
+    User getOne(int id);
 
     void add(User user);
 
