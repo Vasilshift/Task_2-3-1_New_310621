@@ -2,7 +2,6 @@ package web.dao;
 
 import org.springframework.stereotype.Component;
 import web.model.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +92,6 @@ public class UserDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     public void delete(int id) {
@@ -106,5 +104,4 @@ public class UserDao {
             throwables.printStackTrace();
         }
     }
-
 }
