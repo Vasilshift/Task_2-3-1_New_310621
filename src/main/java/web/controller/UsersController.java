@@ -8,26 +8,27 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.dao.UserDao;
 import web.model.User;
+import web.service.UserService;
 
 @Controller
 @RequestMapping("/people")
 public class UsersController {
 
-	private final UserDao userDao;
+	private final UserService userService;
 
-	public UsersController(UserDao userDao) {
-		this.userDao = userDao;
+	public UsersController(UserService userService) {
+		this.userService = userService;
 	}
 
 	@GetMapping()
 	public String index(Model model) {
-		model.addAttribute("users", userDao.index());
+		model.addAttribute("users", userService.index());
 		return "people/index";
 	}
 
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
-		model.addAttribute("user", userDao.show(id));
+		model.addAttribute("user", userService.show(id));
 		return "people/show";
 	}
 
@@ -37,31 +38,28 @@ public class UsersController {
 	}
 
 	@PostMapping()
-	public String create(@ModelAttribute("user") User user) {
-		userDao.save(user);
+	public String add(@ModelAttribute("user") User user) {
+		userService.add(user);
 		return "redirect:/people";
 	}
 
 	@GetMapping("/{id}/edit")
 	public String edit(Model model, @PathVariable("id") int id) {
-		model.addAttribute("user", userDao.show(id));
+		model.addAttribute("user", userService.show(id));
 		return "people/edit";
 	}
 
 	@PatchMapping("/{id}")
-	public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
+	public String update(@ModelAttribute("user") User user,
 						 @PathVariable("id") int id) {
-		if(bindingResult.hasErrors())
-			return "people/edit";
-		userDao.update(id, user);
+		userService.update(user, id);
 		return "redirect:/people";
 	}
 
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable("id") int id) {
-		userDao.delete(id);
+		userService.delete(id);
 		return "redirect:/people";
 	}
-
 
 }
