@@ -1,6 +1,6 @@
 package web.model;
 
-import jakarta.validation.constraints.NotEmpty;
+//import jakarta.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -53,12 +53,12 @@ public class User {
         this.surName = surName;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", surName='" + surName + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + surName + '\'' +
+                '}';
+    }
 }
