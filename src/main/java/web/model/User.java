@@ -1,7 +1,5 @@
 package web.model;
 
-//import jakarta.validation.constraints.NotEmpty;
-
 import javax.persistence.*;
 
 @Entity
