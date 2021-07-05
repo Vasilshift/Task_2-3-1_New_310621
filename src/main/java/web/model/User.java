@@ -13,18 +13,15 @@ public class User {
     private int id;
 
     @Column(name="name")
-    //@NotEmpty(message="Not valid")
     private String name;
 
     @Column(name="surname")
-    //@NotEmpty(message="Not valid")
     private String surName;
 
     public User(){
     }
 
     public User(int id, String name, String surName) {
-        this.id = id;
         this.name = name;
         this.surName = surName;
     }

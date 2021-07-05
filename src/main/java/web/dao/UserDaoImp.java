@@ -23,11 +23,11 @@ public class UserDaoImp implements UserDao {
     @SuppressWarnings("Unchecked")
     @Override
     public List<User> index() {
-        return entityManager.createQuery("From User",User.class).getResultList();
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
     @Override
     public User show(int id) {
-        TypedQuery<User> query = entityManager.createQuery("From User where id=:id",User.class);
+        TypedQuery<User> query = entityManager.createQuery("From User where id=:id", User.class);
         query.setParameter("id", id);
         return query.getResultList().stream().findAny().orElse(null);
     }
