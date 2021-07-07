@@ -7,9 +7,9 @@
 </head>
 <body>
 
-<h2>Edit user page edit</h2>
+<h2>Edit user, page edit.html</h2>
 
-<form th:method="PATCH" th:action="@{/people/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
 
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>

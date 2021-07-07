@@ -20,6 +20,7 @@ public class UserDaoImp implements UserDao {
     public List<User> index() {
         return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
+
     @Override
     public User show(int id) {
         TypedQuery<User> query = entityManager.createQuery("From User where id=:id", User.class);
@@ -30,12 +31,14 @@ public class UserDaoImp implements UserDao {
     public void add(User user) {
         entityManager.persist(user);
     }
+
     @Override
     public void delete(int id) {
-        TypedQuery<User> query = entityManager.createQuery("delete from User where id =:id",User.class);
+        TypedQuery<User> query = entityManager.createQuery("delete from User where id=:id", User.class);
         query.setParameter("id", id);
         query.executeUpdate();
     }
+
     @Override
     public void update(User user, int id) {
         User userToUpdate = show(id);
