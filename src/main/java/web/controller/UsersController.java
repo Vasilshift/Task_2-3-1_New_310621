@@ -8,7 +8,7 @@ import web.model.User;
 import web.service.UserService;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/")
 public class UsersController {
 
 	private final UserService userService;
@@ -57,6 +57,11 @@ public class UsersController {
 	public String delete(@PathVariable("id") int id) {
 		userService.delete(id);
 		return "redirect:/people";
+	}
+
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String loginPage() {
+		return "login";
 	}
 
 }
