@@ -42,6 +42,9 @@ public class HiberConfig {
         factoryBean.setDataSource(dataSource());
         factoryBean.setPackagesToScan("web");
 
+        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        factoryBean.setJpaVendorAdapter(vendorAdapter);
+
         Properties properties = new Properties();
 
         //URGENT!
@@ -50,9 +53,8 @@ public class HiberConfig {
 
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        factoryBean.setJpaProperties(properties);
 
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        factoryBean.setJpaVendorAdapter(vendorAdapter);
         return factoryBean;
     }
 
@@ -62,5 +64,8 @@ public class HiberConfig {
         transactionManager.setEntityManagerFactory(getSessionFactory().getObject());
         return transactionManager;
     }
+
+
+
 }
 

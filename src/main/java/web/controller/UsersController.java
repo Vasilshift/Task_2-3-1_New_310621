@@ -54,13 +54,13 @@ public class UsersController {
 	public String update(@ModelAttribute("user") User user,
 						 @PathVariable("id") int id) {
 		userService.update(user, id);
-		return "redirect:/";
+		return "redirect:/people";
 	}
 
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable("id") int id) {
 		userService.delete(id);
-		return "redirect:/people";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
