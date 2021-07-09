@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import web.dao.UserDao;
 import web.model.User;
 import web.service.UserService;
 
@@ -54,7 +53,7 @@ public class UsersController {
 	public String update(@ModelAttribute("user") User user,
 						 @PathVariable("id") int id) {
 		userService.update(user, id);
-		return "redirect:/people";
+		return "redirect:/";
 	}
 
 	@DeleteMapping("/{id}")
