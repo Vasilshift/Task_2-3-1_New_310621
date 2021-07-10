@@ -21,8 +21,8 @@
                     <tr th:each="user : ${users}">
                         <td><span th:text="${user.id}"> user </span></td>
                         <td><span th:text="${user.username}"> username </span></td>
-                        <td><a th:href="@{/{id}/edit(id=${user.id})}" >edit</a></td>
-                        <td><a th:href="@{/{id}/delete(id=${user.id})}" >delete</a></td>
+                        <td><a th:href="@{/{id}/edit(id=${user.id})}" >-edit-</a></td>
+                        <td><a th:href="@{/{id}/delete(id=${user.id})}" >-delete-</a></td>
                     </tr>
                 </tbody>
 

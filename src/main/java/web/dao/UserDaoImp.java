@@ -17,40 +17,36 @@ public class UserDaoImp implements UserDao {
     public UserDaoImp(){}
 
     @SuppressWarnings("Unchecked")
+    @Transactional(readOnly = true)
     @Override
     public List<User> index() {
-        return entityManager.createQuery("select u from User u", User.class).getResultList();
+        return entityManager.createQuery("From User", User.class).getResultList();
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public User show(int id) {
+    public User getUser(int id) {
         TypedQuery<User> query = entityManager.createQuery("From User where id=:id", User.class);
         query.setParameter("id", id);
         return query.getResultList().stream().findAny().orElse(null);
     }
 
-    //@Transactional
+    @Transactional
     @Override
     public void add(User user) {
         entityManager.persist(user);
     }
 
-    //@Transactional
+    @Transactional
     @Override
     public void delete(int id) {
-        TypedQuery<User> query = entityManager.createQuery("delete from User where id=:id", User.class);
-        query.setParameter("id", id);
-        query.executeUpdate();
+        entityManager.remove(getUser(id));
     }
 
-    //@Transactional
+    @Transactional
     @Override
-    public void update(User user, int id) {
-        User userToUpdate = show(id);
-        userToUpdate.setPassword(user.getPassword());
-        userToUpdate.setUsername(user.getUsername());
+    public void update(User user) {
+        entityManager.merge(user);
     }
-
-
 
 }

@@ -23,8 +23,8 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public User show(int id) {
-        return userDao.show(id);
+    public User getUser(int id) {
+        return userDao.getUser(id);
     }
 
     @Transactional
@@ -41,8 +41,8 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void update(User user, int id) {
-        userDao.update(user, id);
+    public void update(User user) {
+        userDao.update(user);
     }
 
 }
