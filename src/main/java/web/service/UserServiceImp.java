@@ -15,34 +15,34 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public List<User> index() {
         return userDao.index();
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public User show(int id) {
         return userDao.show(id);
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public void add(User user) {
         userDao.add(user);
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public void delete(int id) {
         userDao.delete(id);
     }
 
-    @Transactional
+    //@Transactional
     @Override
-    public void update(User user,int id) {
-        userDao.update(user,id);
+    public void update(User user, int id) {
+        userDao.update(user, id);
     }
 
 }

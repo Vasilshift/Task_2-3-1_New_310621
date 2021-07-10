@@ -42,7 +42,6 @@ public class UserDaoImp implements UserDao {
     @Override
     public void update(User user, int id) {
         User userToUpdate = show(id);
-        userToUpdate.setName(user.getName());
-        userToUpdate.setSurName(user.getSurName());
+        userToUpdate.setUsername(user.getUsername());
     }
 }
