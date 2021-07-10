@@ -15,16 +15,16 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<User> index() {
         return userDao.index();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
-    public User show(int id) {
-        return userDao.show(id);
+    public User getUser(int id) {
+        return userDao.getUser(id);
     }
 
     @Transactional
