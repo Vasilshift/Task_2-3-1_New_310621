@@ -49,7 +49,7 @@ public class UsersController {
 	@PatchMapping("/{id}")
 	public String update(@ModelAttribute("user") User user,
 						 @PathVariable("id") int id) {
-		userService.update(user, id);
+		userService.update(user);
 		return "redirect:/people";
 	}
 

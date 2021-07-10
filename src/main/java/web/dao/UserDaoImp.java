@@ -37,9 +37,7 @@ public class UserDaoImp implements UserDao {
         query.executeUpdate();
     }
     @Override
-    public void update(User user, int id) {
-        User userToUpdate = show(id);
-        userToUpdate.setName(user.getName());
-        userToUpdate.setSurName(user.getSurName());
+    public void update(User user) {
+        entityManager.merge(user);
     }
 }
