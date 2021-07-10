@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,11 +28,14 @@ public class UserDaoImp implements UserDao {
         query.setParameter("id", id);
         return query.getResultList().stream().findAny().orElse(null);
     }
+
+    //@Transactional
     @Override
     public void add(User user) {
         entityManager.persist(user);
     }
 
+    //@Transactional
     @Override
     public void delete(int id) {
         TypedQuery<User> query = entityManager.createQuery("delete from User where id=:id", User.class);
@@ -39,6 +43,7 @@ public class UserDaoImp implements UserDao {
         query.executeUpdate();
     }
 
+    //@Transactional
     @Override
     public void update(User user, int id) {
         User userToUpdate = show(id);
