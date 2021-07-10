@@ -5,38 +5,32 @@
     <meta charset="UTF-8">
     <title>All users page Index</title>
 </head>
-<body>
-<h2>All users, page Index.html</h2>
+    <body>
 
-<div th:each="user : ${users}">
+        <h2>All users, page index.html</h2>
 
-    <tr>
-        <td>
-            <a th:href="@{/{id}(id=${user.getId()})}"
-               th:text="${user.getId()}">user</a>
-        </td>
-        <td>
-            <a th:href="@{/{id}(id=${user.getId()})}"
-               th:text="${user.getName()}">user</a>
-        </td>
-        <td>
-            <a th:href="@{/{id}(id=${user.getId()})}"
-               th:text="${user.getSurName()}">user</a>
-        </td>
+            <table>
+                <thead>
+                    <tr>
+                        <th> id </th>
+                        <th> name </th>
+                        <th> surname </th>
+                    </tr>
+                </thead>
 
-<!--        <td>-->
-<!--            <a th:href="@{/{id}(id=${user.getId()})}"-->
-<!--               th:text="${user.getRoles()}">user</a>-->
-<!--        </td>-->
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td><span th:text="${user.id}"> user </span></td>
+                        <td><span th:text="${user.name}"> name </span></td>
+                        <td><span th:text="${user.surName}"> surName </span></td>
+                        <td><a th:href="@{admin/{id}/edit(id=${user.id})}" >edit</a></td>
+                        <td><a th:href="@{admin/{id}/delete(id=${user.id})}" >delete</a></td>
+                    </tr>
+                </tbody>
 
-    </tr>
+            </table>
 
-</div>
+        <a href="/new">Create new user</a>
 
-<br/>
-<hr/>
-
-<a href="/new">Create new user</a>
-
-</body>
+    </body>
 </html>

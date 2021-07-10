@@ -3,25 +3,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New user</title>
+    <title>New user, page new.html</title>
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
+    <form th:method="POST" th:action="@{/}" th:object="${user}">
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <label for="surName">Enter surname: </label>
+        <input type="text" th:field="*{surName}" id="surname"/>
+        <label for="password">Enter password: </label>
+        <input type="text" th:field="*{password}" id="password"/>
 
-    <br/>
-    <label for="name">Enter surname: </label>
-    <input type="text" th:field="*{surName}" id="surname"/>
-    <br/>
-<!--    <label for="name">Enter password: </label>-->
-<!--    <input type="text" th:field="*{password}" id="password"/>-->
+<!--        <label> Roles:-->
+<!--            <input type="checkbox" name="authorities"-->
+<!--                   th:each="role : ${roles}"-->
+<!--                   th:text="${role.}"-->
+<!--                   th:value="${role.id}"-->
+<!--            />-->
+<!--        </label>-->
 
-    <br/>
-    <input type="submit" value="Create!">
+        <br/>
+        <input type="submit" value="Create!">
 
-</form>
+    </form>
 
 </body>
 </html>
