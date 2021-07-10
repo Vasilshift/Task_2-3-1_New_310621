@@ -19,7 +19,7 @@ public class UserDaoImp implements UserDao {
     @SuppressWarnings("Unchecked")
     @Override
     public List<User> index() {
-        return entityManager.createQuery("from User", User.class).getResultList();
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
@@ -47,6 +47,10 @@ public class UserDaoImp implements UserDao {
     @Override
     public void update(User user, int id) {
         User userToUpdate = show(id);
+        userToUpdate.setPassword(user.getPassword());
         userToUpdate.setUsername(user.getUsername());
     }
+
+
+
 }
