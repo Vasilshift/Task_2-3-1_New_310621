@@ -1,14 +1,17 @@
 package web.model;
 
+import javassist.bytecode.MethodParametersAttribute;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
+
+    public static MethodParametersAttribute USER;
+    public static MethodParametersAttribute ADMIN;
 
     public Role(){}
 
