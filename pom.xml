@@ -183,12 +183,17 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>5.2.0.RELEASE</version>
+            <version>5.5.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>5.2.0.RELEASE</version>
+            <version>5.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.5.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

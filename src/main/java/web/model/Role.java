@@ -24,7 +24,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "username")
     private String username;
 
-    @Transient
+//    @Transient
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "role_id"),
