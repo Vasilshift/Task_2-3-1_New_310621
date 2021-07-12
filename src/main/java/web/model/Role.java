@@ -1,11 +1,13 @@
 package web.model;
 
 import javassist.bytecode.MethodParametersAttribute;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
 
+@Data
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -19,10 +21,18 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(name = "username")
     private String username;
 
-    @ManyToMany(mappedBy = "roles")
+    @Transient
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Collection<User> users;
+
+//    @ManyToMany(mappedBy = "roles")
+//    private Collection<User> users;
 
     public Role(int id, String username, Collection<User> users) {
         this.id = id;

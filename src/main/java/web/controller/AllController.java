@@ -18,6 +18,7 @@ public class AllController {
     }
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
+//    @PreAuthorize("hasAnyRole('USER')")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
         messages.add("Hello!");

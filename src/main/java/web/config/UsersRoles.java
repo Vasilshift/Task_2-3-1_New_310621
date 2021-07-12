@@ -1,20 +1,25 @@
 package web.config;
 
-import com.google.common.collect.*;
-import java.util.Set;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import web.model.Role;
 
-import static web.config.UserPermission.*;
+import java.util.List;
 
-public enum UsersRoles {
+public class UsersRoles {
 
-    ADMIN(Sets.newHashSet(USER_READ, USER_WRITE));
+    @Autowired
+    public LocalSessionFactoryBean factoryBean;
 
-    //USER(Sets.newHashSet());
+    public List<Role> getRolesList() {
+        Session session = factoryBean.getObject().getCurrentSession();
 
+        return session.createQuery("from Role").getResultList();
+    }
 
-    private final Set<UserPermission> permissions;
-
-    UsersRoles(Set<UserPermission> permissions) {
-        this.permissions = permissions;
+    public Role getRoleById(Long id) {
+        Session session = factoryBean.getObject().getCurrentSession();
+        return session.find(Role.class, id);
     }
 }
