@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -14,7 +13,7 @@ public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private String username;
 
@@ -35,7 +34,7 @@ public class Role implements GrantedAuthority {
         this.username = username;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

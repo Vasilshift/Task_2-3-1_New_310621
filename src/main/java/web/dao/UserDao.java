@@ -1,7 +1,7 @@
 package web.dao;
 
-import org.springframework.stereotype.Component;
 import web.model.User;
+
 import java.util.List;
 
 public interface UserDao {
@@ -14,7 +14,7 @@ public interface UserDao {
 
     void delete(int id);
 
-    void update(User user);
+    void update(User user, int id);
 
 }
 

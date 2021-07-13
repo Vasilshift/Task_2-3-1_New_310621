@@ -44,19 +44,19 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     // this code don't allow at application
 
-//    @Override
-//    public void onStartup(ServletContext servletContext) throws ServletException {
-//        super.onStartup(servletContext);
-//        registerHiddenFieldFilter(servletContext);
-//    }
-//
-//    private void registerHiddenFieldFilter(ServletContext aContext) {
-//        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-//        characterEncodingFilter.setEncoding("UTF-8");
-//        characterEncodingFilter.setForceEncoding(true);
-//
-//        aContext.addFilter("hiddenHttpMethodFilter",
-//                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,false, "/*");
-//    }
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        registerHiddenFieldFilter(servletContext);
+    }
+
+    private void registerHiddenFieldFilter(ServletContext aContext) {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+
+        aContext.addFilter("hiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+    }
 
 }

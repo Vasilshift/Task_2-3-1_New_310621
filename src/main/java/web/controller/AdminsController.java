@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ public class AdminsController {
 
     private final UserService userService;
 
+    @Autowired
     public AdminsController(UserService userService) {
         this.userService = userService;
     }
@@ -56,8 +58,8 @@ public class AdminsController {
 
     //	@RequestMapping(method = RequestMethod.PATCH)
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user) {
-        userService.update(user);
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.update(user, id);
         return "redirect:/admin";
     }
 
