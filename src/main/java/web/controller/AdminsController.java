@@ -58,13 +58,13 @@ public class AdminsController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user) {
         userService.update(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
 
