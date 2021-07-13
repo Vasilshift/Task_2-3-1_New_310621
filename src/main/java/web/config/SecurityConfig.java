@@ -21,6 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        this.userDetailsService = userDetailsService;
 //    }
 
+
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("a").password("a").roles("ADMIN");
@@ -58,8 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //страницы аутентификаци доступна всем
                 .antMatchers("/login").anonymous()
                 // защищенные URL
-                .antMatchers("/hello", "admin/**", "people/**").access("hasRole('ADMIN')")
-                .antMatchers("/showForUser").access("hasAnyRole('USER')")
+                .antMatchers("/hello").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/people/**", "/admin/**").hasRole("ADMIN")
+                //.antMatchers("/people/showForUser").access("hasAnyRole('USER')")
                 .anyRequest().authenticated();
     }
 
