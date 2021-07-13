@@ -21,7 +21,7 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "username")
+    //@Column(name = "username")
     private String username;
 
 //    @Transient

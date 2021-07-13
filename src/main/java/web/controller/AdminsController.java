@@ -3,15 +3,9 @@ package web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.model.Role;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
-
-import java.util.HashSet;
-import java.util.Set;
-
-//import web.service.RoleService;
 
 @Controller
 //@PreAuthorize("hasAnyRole('ADMIN')")
@@ -55,16 +49,16 @@ public class AdminsController {
     public String add(@ModelAttribute("user") User user,
                       @RequestParam(required = false) String roleAdmin,
                       @RequestParam(required = false) String roleGuest) {
-        Set<Role> roles = new HashSet<>();
-        //roles.add(roleService.getDefaultRole());
-
-        if (roleAdmin != null) {
-            roles.add(roleService.getRoleByName("ROLE_ADMIN"));
-        }
-        if (roleGuest != null) {
-            roles.add(roleService.getRoleByName("ROLE_GUEST"));
-        }
-        user.setRoles(roles);
+//        List<Role> roles = new HashSet<>();
+//        //roles.add(roleService.getDefaultRole());
+//
+//        if (roleAdmin != null) {
+//            roles.add(roleService.getRoleByUserName("ROLE_ADMIN"));
+//        }
+//        if (roleGuest != null) {
+//            roles.add(roleService.getRoleByUserName("ROLE_GUEST"));
+//        }
+//        user.setRoles(roles);
         userService.add(user);
         return "redirect:/admin/users";
     }

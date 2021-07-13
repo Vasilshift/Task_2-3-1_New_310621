@@ -18,7 +18,7 @@ public class UsersRoles {
         return session.createQuery("from Role").getResultList();
     }
 
-    public Role getRoleById(Long id) {
+    public Role getRoleById(int id) {
         Session session = factoryBean.getObject().getCurrentSession();
         return session.find(Role.class, id);
     }
