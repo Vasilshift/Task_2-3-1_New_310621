@@ -1,11 +1,16 @@
 package web.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import web.model.User;
 import web.service.UserService;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Controller
 @RequestMapping("/people")
@@ -13,15 +18,26 @@ public class UsersController {
 
 	private final UserService userService;
 
+	@PersistenceContext
+	private EntityManager entityManager;
+
 	public UsersController(UserService userService) {
 		this.userService = userService;
 	}
 
 	@GetMapping("/{id}")
-	public String show(@PathVariable("id") int id, Model model) {
+	public String showForUser(@PathVariable("id") int id, Model model) {
 		model.addAttribute("user", userService.getUser(id));
-		return "people/show";
+		return "showForUser";
 	}
+
+	public String findUserByUsername(String username) {
+		return String.valueOf(entityManager
+				.createQuery("select u from User u where u.username = :username", User.class)
+				.setParameter("username", username)
+				.getSingleResult());
+	}
+
 
 //
 //	@GetMapping("/")
