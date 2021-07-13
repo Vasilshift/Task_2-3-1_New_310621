@@ -1,28 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit user</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Edit user</title>-->
+<!--</head>-->
+<!--<body>-->
 
-<h2>Edit user, page edit.html</h2>
+<!--<h2>Edit user, page edit.html</h2>-->
 
-<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+<!--<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">-->
 
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{username}" id="name"/>
-    <label for="name">Enter password: </label>
-    <input type="text" th:field="*{password}" id="password"/>
+<!--    <label for="name">Enter name: </label>-->
+<!--    <input type="text" th:field="*{username}" id="name"/>-->
+<!--    <label for="name">Enter password: </label>-->
+<!--    <input type="text" th:field="*{password}" id="password"/>-->
 
-<!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
-<!--    <div style="color:red" th:if="${#fields.hasErrors('surname')}"-->
-<!--         th:errors="*{surName}">Surname error</div>-->
-    <br/>
-    <input type="submit" value="Update!">
+<!--&lt;!&ndash;    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div style="color:red" th:if="${#fields.hasErrors('surname')}"&ndash;&gt;-->
+<!--&lt;!&ndash;         th:errors="*{surName}">Surname error</div>&ndash;&gt;-->
+<!--    <br/>-->
+<!--    <input type="submit" value="Update!">-->
 
-</form>
+<!--</form>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

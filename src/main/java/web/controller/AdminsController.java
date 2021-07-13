@@ -1,15 +1,12 @@
 package web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.model.Role;
 import web.model.User;
-//import web.service.RoleService;
 import web.service.UserService;
 
-import java.util.List;
+//import web.service.RoleService;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,33 +25,33 @@ public class AdminsController {
         return "user";
     }
 
-    @GetMapping("/admin")
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("users", userService.index());
-        return "people/index";
+        return "admin/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
-        return "people/show";
+        return "admin/show";
     }
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
-        return "people/new";
+        return "admin/new";
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public String add(@ModelAttribute("user") User user) {
         userService.add(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUser(id));
-        return "people/edit";
+        return "admin/edit";
     }
 
     //	@RequestMapping(method = RequestMethod.PATCH)
