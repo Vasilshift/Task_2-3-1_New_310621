@@ -13,6 +13,21 @@
   <label for="password">Enter password: </label>
   <input type="text" th:field="*{password}" id="password"/>
 
+  <label>
+    <input type="checkbox"
+           name="roleAdmin"
+           th:value="ROLE_ADMIN"
+           th:text="Admin">
+  </label>
+  <br/>
+  <label>
+    <input type="checkbox"
+           name="roleUser"
+           th:value="ROLE_USER"
+           th:text="User">
+  </label>
+
+
   <!--        <label> Roles:-->
   <!--            <input type="checkbox" name="authorities"-->
   <!--                   th:each="role : ${roles}"-->

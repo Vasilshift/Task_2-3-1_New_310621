@@ -26,9 +26,9 @@ public class UsersController {
 	}
 
 	@GetMapping("/{id}")
-	public String showForUser(@PathVariable("id") int id, Model model) {
+	public String show(@PathVariable("id") int id, Model model) {
 		model.addAttribute("user", userService.getUser(id));
-		return "showForUser";
+		return "show";
 	}
 
 	public String findUserByUsername(String username) {

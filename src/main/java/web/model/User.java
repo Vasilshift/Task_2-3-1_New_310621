@@ -6,13 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
-    public User(){}
+    public User(String admin, String s, List<GrantedAuthority> role_admin){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,11 @@ public class User implements UserDetails {
         this.password = password;
         this.roles = roles;
     }
+
+    public User() {
+
+    }
+
 
     public int getId() {
         return id;

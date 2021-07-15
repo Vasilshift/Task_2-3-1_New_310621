@@ -15,10 +15,22 @@
     <input type="text" th:field="*{username}" id="name"/>
     <label for="name">Enter password: </label>
     <input type="text" th:field="*{password}" id="password"/>
+    <label>
+        <input type="checkbox"
+               name="roleAdmin"
+               th:value="ROLE_ADMIN"
+               th:text="Admin">
+    </label>
+    <br/>
+    <label>
+        <input type="checkbox"
+               name="roleUser"
+               th:value="ROLE_USER"
+               th:text="User">
+    </label>
 
-    <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
-    <!--    <div style="color:red" th:if="${#fields.hasErrors('surname')}"-->
-    <!--         th:errors="*{surName}">Surname error</div>-->
+
+
     <br/>
     <input type="submit" value="Update!">
 
