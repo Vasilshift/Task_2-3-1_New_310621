@@ -30,15 +30,20 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new String[]{"/"};
     }
 
-//    @Override
-//    public void onStartup(ServletContext aServletContext) throws ServletException {
-//        super.onStartup(aServletContext);
-//        registerHiddenFieldFilter(aServletContext);
-//    }
-//    private void registerHiddenFieldFilter(ServletContext aContext) {
-//        aContext.addFilter("hiddenHttpMethodFilter",
-//                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, false, "/*");
-//        //aContext.addFilter("characterEncodingFilter", characterEncodingFilter);
-//    }
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        registerHiddenFieldFilter(servletContext);
+    }
+
+    private void registerHiddenFieldFilter(ServletContext aContext) {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+
+        aContext.addFilter("hiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+    }
 
 }

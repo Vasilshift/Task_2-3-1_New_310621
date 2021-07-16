@@ -6,18 +6,29 @@
     <title>All users page Index</title>
 </head>
 <body>
-<h2>All users page Index</h2>
-<div th:each="user : ${users}">
 
-    <a th:href="@{/people/{id}(id=${user.getId()})}"
-       th:text="${user.getName()}">user</a>
+<h2>All users, page index.html</h2>
 
-</div>
+<table>
+    <thead>
+    <tr>
+        <th> id </th>
+        <th> username </th>
+    </tr>
+    </thead>
 
-<br/>
-<hr/>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td><span th:text="${user.name}"> user </span></td>
+        <td><span th:text="${user.surName}"> username </span></td>
+        <td><a th:href="@{/people/{id}/edit(id=${user.id})}" >-edit-</a></td>
+        <td><a th:href="@{/people/{id}(id=${user.id})}" >-delete-</a></td>
+    </tr>
+    </tbody>
 
-<a href="/people/new">Create new user</a>
+</table>
+
+<a href="people/new">Create new user</a>
 
 </body>
 </html>
