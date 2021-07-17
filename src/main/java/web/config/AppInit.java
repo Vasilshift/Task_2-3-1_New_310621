@@ -13,7 +13,6 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
                 HiberConfig.class,
-                SecurityConfig.class
         };
     }
 

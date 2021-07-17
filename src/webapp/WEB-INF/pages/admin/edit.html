@@ -12,9 +12,9 @@
 <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
 
     <label for="name">Enter name: </label>
-    <input type="text" th:field="*{username}" id="name"/>
+    <input type="text" th:field="*{name}" id="name"/>
     <label for="name">Enter password: </label>
-    <input type="text" th:field="*{password}" id="password"/>
+    <input type="text" th:field="*{surName}" id="password"/>
 
     <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
     <!--    <div style="color:red" th:if="${#fields.hasErrors('surname')}"-->

@@ -7,19 +7,12 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/admin}" th:object="${user}">
+<form th:method="POST" th:action="@{/people}" th:object="${user}">
   <label for="name">Enter name: </label>
-  <input type="text" th:field="*{username}" id="name"/>
+  <input type="text" th:field="*{name}" id="name"/>
   <label for="password">Enter password: </label>
-  <input type="text" th:field="*{password}" id="password"/>
+  <input type="text" th:field="*{surName}" id="password"/>
 
-  <!--        <label> Roles:-->
-  <!--            <input type="checkbox" name="authorities"-->
-  <!--                   th:each="role : ${roles}"-->
-  <!--                   th:text="${role.}"-->
-  <!--                   th:value="${role.id}"-->
-  <!--            />-->
-  <!--        </label>-->
 
   <br/>
   <input type="submit" value="Create!">

@@ -1,40 +1,28 @@
 package web.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "users")
-public class User implements UserDetails {
-
-    public User(){}
+@Table(name="users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name="name")
+    private String name;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name="surname")
+    private String surName;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    public User(){
+    }
 
-    public User(int id, String username, String password, Set<Role> roles) {
+    public User(int id, String name, String surName) {
         this.id = id;
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
+        this.name = name;
+        this.surName = surName;
     }
 
     public int getId() {
@@ -45,53 +33,28 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String getUsername() {
-        return username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+    public String getSurName() {
+        return surName;
     }
 
-    public String getPassword() {
-        return password;
+    public void setSurName(String surName) {
+        this.surName = surName;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", lastname='" + surName + '\'' +
+//                '}';
+//    }
 }
