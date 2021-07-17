@@ -19,9 +19,9 @@
 
     <tbody>
     <tr th:each="user : ${users}">
-        <td><span th:text="${user.name}"> user </span></td>
-        <td><span th:text="${user.surName}"> username </span></td>
-        <td><a th:href="@{/people/{id}/edit(id=${user.id})}" >-edit-</a></td>
+        <td><span th:text="${user.name}">user</span></td>
+        <td><span th:text="${user.surName}">username</span></td>
+        <td><a th:href="@{/people/{id}/edit(id=${user.getId()})}" >-edit-</a></td>
         <td><a th:href="@{/people/{id}(id=${user.id})}" >-delete-</a></td>
     </tr>
     </tbody>

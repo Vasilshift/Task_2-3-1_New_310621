@@ -3,7 +3,7 @@ package web.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users13")
+@Table(name="users")
 public class User {
 
     @Id
@@ -20,6 +20,7 @@ public class User {
     }
 
     public User(int id, String name, String surName) {
+        this.id = id;
         this.name = name;
         this.surName = surName;
     }
@@ -48,12 +49,12 @@ public class User {
         this.surName = surName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + surName + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", lastname='" + surName + '\'' +
+//                '}';
+//    }
 }

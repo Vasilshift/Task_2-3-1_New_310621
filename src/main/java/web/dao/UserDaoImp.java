@@ -1,7 +1,9 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,14 +18,24 @@ public class UserDaoImp implements UserDao {
     public UserDaoImp(){}
 
     @SuppressWarnings("Unchecked")
+    @Transactional(readOnly = true)
     @Override
     public List<User> index() {
         return entityManager.createQuery("From User", User.class).getResultList();
     }
 
+//    @Override
+//    @Transactional(readOnly = true)
+//    public User getUser(int id) {
+//        return entityManager.find(User.class, id);
+//    }
+
+    @Transactional(readOnly = true)
     @Override
     public User getUser(int id) {
-        return entityManager.find(User.class, id);
+        TypedQuery<User> query = entityManager.createQuery("From User where id=:id", User.class);
+        query.setParameter("id", id);
+        return query.getResultList().stream().findAny().orElse(null);
     }
 
     @Override
