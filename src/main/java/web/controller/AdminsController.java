@@ -10,7 +10,7 @@ import web.service.UserService;
 //import web.service.RoleService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/")
 public class AdminsController {
 
     private final UserService userService;
@@ -18,13 +18,6 @@ public class AdminsController {
     @Autowired
     public AdminsController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/user")
-    public String userPage(Model model, int id) {
-        User user = userService.getUser(id);
-        model.addAttribute("user", user);
-        return "user";
     }
 
     @GetMapping()
@@ -47,7 +40,7 @@ public class AdminsController {
     @PostMapping()
     public String add(@ModelAttribute("user") User user) {
         userService.add(user);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
     @GetMapping("/{id}/edit")
@@ -60,13 +53,13 @@ public class AdminsController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.update(user, id);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
 

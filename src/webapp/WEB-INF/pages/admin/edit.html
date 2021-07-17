@@ -16,9 +16,21 @@
     <label for="name">Enter password: </label>
     <input type="text" th:field="*{password}" id="password"/>
 
-    <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
-    <!--    <div style="color:red" th:if="${#fields.hasErrors('surname')}"-->
-    <!--         th:errors="*{surName}">Surname error</div>-->
+    <p>
+        <label>
+            <input type="checkbox"
+                   name="roleAdmin"
+                   th:value="ADMIN"
+                   th:text="Admin">
+        </label>
+        <br/>
+        <label>
+            <input type="checkbox"
+                   name="roleUser"
+                   th:value="USER"
+                   th:text="User">
+        </label>
+    </p>
     <br/>
     <input type="submit" value="Update!">
 

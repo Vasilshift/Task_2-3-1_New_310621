@@ -49,4 +49,13 @@ public class UserDaoImp implements UserDao {
         entityManager.merge(user);
     }
 
+    @Override
+    @Transactional
+    public User findUserByUsername(String username) {
+        TypedQuery<User> query = entityManager.createQuery("From User where username=:username", User.class);
+        query.setParameter("username", username);
+        return query.getResultList().stream().findAny().orElse(null);
+    }
+
+
 }
