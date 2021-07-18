@@ -18,18 +18,9 @@ public class UsersController {
 
 	private final UserService userService;
 
-//	@PersistenceContext
-//	private EntityManager entityManager;
-
 	public UsersController(UserService userService) {
 		this.userService = userService;
 	}
-
-//	@GetMapping("/{id}")
-//	public String showForUser(@PathVariable("id") int id, Model model) {
-//		model.addAttribute("user", userService.getUser(id));
-//		return "showForUser";
-//	}
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
     public String printWelcome(Model model) {
@@ -40,7 +31,6 @@ public class UsersController {
         model.addAttribute("messages", messages);
         return "hello";
     }
-
 
 	@GetMapping("/user")
 	public String userPage(Model model, Principal principal) {
@@ -53,6 +43,5 @@ public class UsersController {
     	public String loginPage() {
         	return "login";
     }
-
 
 }

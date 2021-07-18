@@ -17,10 +17,13 @@
 
 <br/>
 
-
 <form th:method="delete" th:action="@{/admin/{id}(id=${user.getId()})}">
   <input type="submit" value="Delete!"/>
 </form>
+
+<div>
+  <a href="/logout">logout</a>
+</div>
 
 </body>
 </html>

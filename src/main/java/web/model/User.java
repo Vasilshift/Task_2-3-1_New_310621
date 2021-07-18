@@ -30,11 +30,12 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(int id, String username, String password, Set<Role> roles) {
+    public User(User user) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.roles = roles;
+
     }
 
     public static UserDetails fromUser(User user) {

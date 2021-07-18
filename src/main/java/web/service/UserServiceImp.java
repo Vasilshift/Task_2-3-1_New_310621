@@ -56,7 +56,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return userDao.findUserByUsername(username);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username)
@@ -65,4 +64,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
         User user = userDao.findUserByUsername(username);
         return User.fromUser(user);
     }
+
+
 }
