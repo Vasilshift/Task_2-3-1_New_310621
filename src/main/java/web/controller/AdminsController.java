@@ -42,7 +42,19 @@ public class AdminsController {
                       @RequestParam(required = false) String roleUser,
                       @RequestParam(required = false) String roleAdmin
                         ) {
+        //find user by username
+        User userFromDB = userService.findUserByUsername(user.getUsername());
+        //user.setRoles(Collections.singleton(new Role(2, "ROLE_USER")));
+        userFromDB.setRoles(2, roleUser);
 
+
+//        if (roleAdmin != null) {
+//            //get user_id for insert into table users_roles
+//            int user_id = user.getId();
+//            int role_id = 1;
+//
+//            entity"insert into users_roles ()"
+//        }
 
         userService.add(user);
 

@@ -1,22 +1,13 @@
-package web.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import web.dao.RoleDao;
-import web.model.Role;
-
-import java.util.List;
-
-public class RoleService {
-
-    @Autowired
-    RoleDao roleDao;
-
-    public Role getRoleById(int id) {
-        return roleDao.getRoleById(id);
-    }
-    public List<Role> getRolesList() {
-        return roleDao.getRolesList();
-    }
-
-
-}
+//package web.service;
+//
+//import web.model.Role;
+//
+//import java.util.List;
+//
+//public interface RoleService {
+//
+//    Role getRoleById(int id);
+//
+//    List<Role> getRolesList();
+//
+//}
