@@ -7,11 +7,11 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/people}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
   <label for="name">Enter name: </label>
   <input type="text" th:field="*{name}" id="name"/>
-  <label for="password">Enter password: </label>
-  <input type="text" th:field="*{surName}" id="password"/>
+  <label for="surName">Enter password: </label>
+  <input type="text" th:field="*{surName}" id="surName"/>
 
 
   <br/>
