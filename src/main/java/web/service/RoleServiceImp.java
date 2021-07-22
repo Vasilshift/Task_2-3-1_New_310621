@@ -52,6 +52,7 @@ public class RoleServiceImp implements RoleService {
             roles.add(getRoleByRolename("ROLE_USER"));
         }
         user.setRoles(roles);
+
         System.out.println(user.getRoles());
     }
 

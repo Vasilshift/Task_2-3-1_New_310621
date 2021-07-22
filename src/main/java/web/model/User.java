@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -25,6 +24,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "roles")
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),

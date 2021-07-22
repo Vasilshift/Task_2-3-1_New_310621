@@ -16,7 +16,6 @@ public class AdminsController {
     private final UserService userService;
     private RoleService roleService;
 
-
     public AdminsController(UserService userService) {
         this.userService = userService;
         this.roleService = roleService;
@@ -45,8 +44,8 @@ public class AdminsController {
                       @RequestParam(required = false) String roleAdmin
                         ) {
         userService.add(user);
+        //roleService.addRole(roleService.getRoleByRolename("ROLE_ADMIN"));
         roleService.setupRoles(user, roleAdmin, roleUser);
-
 
         return "redirect:/admin/";
     }
