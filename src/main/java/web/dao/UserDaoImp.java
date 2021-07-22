@@ -58,5 +58,4 @@ public class UserDaoImp implements UserDao {
         return query.getResultList().stream().findAny().orElse(null);
     }
 
-
 }

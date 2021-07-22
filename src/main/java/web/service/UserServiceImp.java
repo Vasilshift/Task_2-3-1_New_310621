@@ -1,5 +1,6 @@
 package web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,8 +14,10 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
 
+
     private final UserDao userDao;
 
+    @Autowired
     public UserServiceImp(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -63,5 +66,13 @@ public class UserServiceImp implements UserService, UserDetailsService {
         User user = userDao.findUserByUsername(username);
         return User.fromUser(user);
     }
+
+//    public Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles) {
+//        List<GrantedAuthority> result = new ArrayList();
+//        for (String role : roles) {
+//            result.add(new SimpleGrantedAuthority(role));
+//        }
+//        return result;
+//    }
 
 }

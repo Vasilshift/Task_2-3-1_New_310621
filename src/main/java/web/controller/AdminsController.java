@@ -5,19 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
+import web.service.RoleService;
 import web.service.UserService;
 
 @Controller
 @RequestMapping("/admin/")
 public class AdminsController {
 
-    private final UserService userService;
-    //private final RoleService roleService;
-
     @Autowired
+    private final UserService userService;
+    private RoleService roleService;
+
+
     public AdminsController(UserService userService) {
         this.userService = userService;
-        //this.roleService = roleService;
+        this.roleService = roleService;
     }
 
     @GetMapping()
@@ -42,21 +44,9 @@ public class AdminsController {
                       @RequestParam(required = false) String roleUser,
                       @RequestParam(required = false) String roleAdmin
                         ) {
-        //find user by username
-        User userFromDB = userService.findUserByUsername(user.getUsername());
-        //user.setRoles(Collections.singleton(new Role(2, "ROLE_USER")));
-        userFromDB.setRoles(2, roleUser);
-
-
-//        if (roleAdmin != null) {
-//            //get user_id for insert into table users_roles
-//            int user_id = user.getId();
-//            int role_id = 1;
-//
-//            entity"insert into users_roles ()"
-//        }
-
         userService.add(user);
+        roleService.setupRoles(user, roleAdmin, roleUser);
+
 
         return "redirect:/admin/";
     }

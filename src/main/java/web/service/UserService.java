@@ -18,4 +18,6 @@ public interface UserService {
 
     User findUserByUsername(String username);
 
+    //Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles);
+
 }
