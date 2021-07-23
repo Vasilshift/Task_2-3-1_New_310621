@@ -14,9 +14,9 @@ public class AdminsController {
 
     @Autowired
     private final UserService userService;
-    private RoleService roleService;
+    private final RoleService roleService;
 
-    public AdminsController(UserService userService) {
+    public AdminsController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -38,15 +38,21 @@ public class AdminsController {
         return "admin/new";
     }
 
-    @PostMapping()
+    @PostMapping("/new")
     public String add(@ModelAttribute("user") User user,
-                      @RequestParam(required = false) String roleUser,
-                      @RequestParam(required = false) String roleAdmin
+                      @RequestParam(required = false, name = "roleAdmin") String roleAdmin
                         ) {
-        userService.add(user);
+        if (roleAdmin != null) {
+            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
+        } else {
+            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
+        }
         //roleService.addRole(roleService.getRoleByRolename("ROLE_ADMIN"));
-        roleService.setupRoles(user, roleAdmin, roleUser);
 
+        //roleService.setupRoles(user, roleAdmin, roleUser);
+        //user.setRoles(userService.getRole(role));
+
+        //userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER"));
         return "redirect:/admin/";
     }
 

@@ -1,5 +1,6 @@
 package web.service;
 
+import web.model.Role;
 import web.model.User;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface UserService {
     User findUserByUsername(String username);
 
     //Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles);
+
+    User addRoles(User user, Role role);
 
 }

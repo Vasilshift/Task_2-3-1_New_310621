@@ -3,7 +3,6 @@ package web.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "roles")
@@ -15,15 +14,17 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "role")
     private String rolename;
 
-    @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
+//    @Transient
+//    @ManyToMany(mappedBy = "roles")
+//    private Collection<User> users;
 
-    public Role(int id, String rolename, Collection<User> users) {
+    public Role(int id, String rolename) {
         this.id = id;
         this.rolename = rolename;
-        this.users = users;
+        //this.users = users;
     }
 
     public String getRolename() {
@@ -42,13 +43,13 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public Collection<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Collection<User> users) {
-        this.users = users;
-    }
+//    //public Collection<User> getUsers() {
+//        return users;
+//    }
+//
+//    //public void setUsers(Collection<User> users) {
+//        this.users = users;
+//    }
 
     @Override
     public String getAuthority() {

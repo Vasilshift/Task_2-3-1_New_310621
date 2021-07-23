@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/admin/}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
   <label for="name">Enter name: </label>
   <input type="text" th:field="*{username}" id="name"/>
   <label for="password">Enter password: </label>
@@ -19,7 +19,7 @@
                th:value="ROLE_ADMIN"
                th:text="Admin">
     </label>
-    <br/>
+
     <label>
         <input type="checkbox"
                name="roleUser"
@@ -27,7 +27,6 @@
                th:text="User">
     </label>
 
-  <br/>
   <input type="submit" value="Create!">
 
 </form>

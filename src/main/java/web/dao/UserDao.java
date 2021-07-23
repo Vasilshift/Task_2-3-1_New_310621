@@ -18,5 +18,7 @@ public interface UserDao {
 
     User findUserByUsername(String username);
 
+    //void addRoles(String role);
+
 }
 

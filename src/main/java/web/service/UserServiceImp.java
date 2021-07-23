@@ -7,9 +7,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
+import web.model.Role;
 import web.model.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
@@ -67,7 +70,18 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return User.fromUser(user);
     }
 
-//    public Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles) {
+    @Override
+    public User addRoles(User user, Role role) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
+        return user;
+
+    }
+
+
+
+    //    public Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles) {
 //        List<GrantedAuthority> result = new ArrayList();
 //        for (String role : roles) {
 //            result.add(new SimpleGrantedAuthority(role));
