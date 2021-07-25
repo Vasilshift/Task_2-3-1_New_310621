@@ -62,4 +62,9 @@ public class RoleServiceImp implements RoleService {
     public void addRole(Role role) {
         roleDao.addRole(role);
     }
+
+    @Override
+    public void updateRole(Role role) {
+        roleDao.updateRole(role);
+    }
 }

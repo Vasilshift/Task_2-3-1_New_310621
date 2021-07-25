@@ -50,6 +50,8 @@ public class UserDaoImp implements UserDao {
         entityManager.merge(user);
     }
 
+
+
     @Override
     @Transactional
     public User findUserByUsername(String username) {

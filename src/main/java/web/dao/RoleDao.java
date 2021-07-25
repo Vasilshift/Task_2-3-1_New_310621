@@ -10,8 +10,8 @@ public interface RoleDao {
 
     List<Role> RolesList();
 
-    //void setupRoles(User user, String roleAdmin, String roleUser);
-
     void addRole(Role role);
+
+    void updateRole(Role role);
 
 }

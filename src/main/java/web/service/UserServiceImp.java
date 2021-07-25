@@ -17,7 +17,6 @@ import java.util.Set;
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
 
-
     private final UserDao userDao;
 
     @Autowired
@@ -78,15 +77,5 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return user;
 
     }
-
-
-
-    //    public Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles) {
-//        List<GrantedAuthority> result = new ArrayList();
-//        for (String role : roles) {
-//            result.add(new SimpleGrantedAuthority(role));
-//        }
-//        return result;
-//    }
 
 }

@@ -19,8 +19,6 @@ public interface UserService {
 
     User findUserByUsername(String username);
 
-    //Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles);
-
     User addRoles(User user, Role role);
 
 }

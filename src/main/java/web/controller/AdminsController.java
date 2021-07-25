@@ -47,24 +47,28 @@ public class AdminsController {
         } else {
             userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
         }
-        //roleService.addRole(roleService.getRoleByRolename("ROLE_ADMIN"));
-
-        //roleService.setupRoles(user, roleAdmin, roleUser);
-        //user.setRoles(userService.getRole(role));
-
-        //userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER"));
         return "redirect:/admin/";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUser(id));
+
         return "admin/edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.update(user, id);
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id,
+                         @RequestParam(required = false, name = "roleAdmin") String roleAdmin,
+                         @RequestParam(required = false, name = "roleUser") String roleUser) {
+
+        if (roleAdmin != null) {
+            userService.update(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")), id);
+        }
+        if (roleUser != null) {
+            userService.update(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")), id);
+        }
+
         return "redirect:/admin/";
     }
 

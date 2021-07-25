@@ -27,13 +27,13 @@ public class RoleDaoImp implements RoleDao {
         return entityManager.createQuery("From Role", Role.class).getResultList();
     }
 
-//    @Override
-//    public void setupRoles(User user, String roleAdmin, String roleUser) {
-//
-//    }
-
     @Override
     public void addRole(Role role) {
         entityManager.persist(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        entityManager.merge(role);
     }
 }
