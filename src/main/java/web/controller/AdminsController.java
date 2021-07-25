@@ -9,7 +9,7 @@ import web.service.RoleService;
 import web.service.UserService;
 
 @Controller
-@RequestMapping("/admin/")
+@RequestMapping("/admin")
 public class AdminsController {
 
     @Autowired
