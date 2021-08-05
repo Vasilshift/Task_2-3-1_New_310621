@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
@@ -13,19 +14,19 @@
   <label for="password">Enter password: </label>
   <input type="text" th:field="*{password}" id="password"/>
 
-    <label>
-        <input type="checkbox"
-               name="roleAdmin"
-               th:value="ROLE_ADMIN"
-               th:text="Admin">
-    </label>
+  <label>
+    <input type="checkbox"
+           name="roleView"
+           th:value = roleAdmin
+           th:text="Admin">
+  </label>
 
-    <label>
-        <input type="checkbox"
-               name="roleUser"
-               th:value="ROLE_USER"
-               th:text="User">
-    </label>
+  <label>
+    <input type="checkbox"
+           name="roleView"
+           th:value = roleUser
+           th:text="User">
+  </label>
 
   <input type="submit" value="Create!">
 

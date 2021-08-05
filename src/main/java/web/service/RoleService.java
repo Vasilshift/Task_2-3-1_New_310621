@@ -9,7 +9,7 @@ public interface RoleService {
 
     Role getRoleByRolename(String rolename);
 
-    List<Role> RolesList();
+    List<Role> getRolesList();
 
     void setupRoles(User user, String roleAdmin, String roleUser);
 
@@ -17,4 +17,5 @@ public interface RoleService {
 
     void updateRole(Role role);
 
+    Role getRoleById(Long id);
 }

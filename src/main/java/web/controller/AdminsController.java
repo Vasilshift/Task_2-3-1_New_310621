@@ -8,14 +8,17 @@ import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
 
+import java.util.Set;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminsController {
 
-    @Autowired
+
     private final UserService userService;
     private final RoleService roleService;
 
+    @Autowired
     public AdminsController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
@@ -38,16 +41,28 @@ public class AdminsController {
         return "admin/new";
     }
 
-    @PostMapping("/new")
-    public String add(@ModelAttribute("user") User user,
-                      @RequestParam(required = false, name = "roleAdmin") String roleAdmin
-                        ) {
-        if (roleAdmin != null) {
+//    @PostMapping("/new")
+//    public String add(@ModelAttribute("user") User user,
+//                      @RequestParam(required = false, name = "roleAdmin") String roleAdmin
+//    ) {
+//        if (roleAdmin != null) {
+//            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
+//        } else {
+//            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
+//        }
+//        return "redirect:/admin/";
+//    }
+
+
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User user,
+                          @RequestParam("roleView") Set<String> roleView ) {
+        if (roleView.contains("roleAdmin")) {
             userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
-        } else {
+        } else if (roleView.contains("roleUser")){
             userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
         }
-        return "redirect:/admin/";
+        return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
@@ -77,5 +92,16 @@ public class AdminsController {
         userService.delete(id);
         return "redirect:/admin/";
     }
+
+//    @GetMapping("/{id}/profile")
+//    public String showUserProfileModal(@PathVariable("id") Long userId, Model model, RedirectAttributes attributes) {
+//        try {
+//            model.addAttribute("allRoles", userService.getSetOfRoles());
+//            model.addAttribute("user", userService.findUser(userId));
+//            return "fragments/user-form";
+//        } catch (IllegalArgumentException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+//        }
+//    }
 
 }

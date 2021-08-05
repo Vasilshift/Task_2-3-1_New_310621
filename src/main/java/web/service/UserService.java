@@ -4,6 +4,7 @@ import web.model.Role;
 import web.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
@@ -21,4 +22,9 @@ public interface UserService {
 
     User addRoles(User user, Role role);
 
+    Set<Role> getSetOfRoles(List<String> roles);
+
+
+
+//    Set<Role> findAllRoles();
 }

@@ -18,10 +18,12 @@ import java.util.Set;
 public class UserServiceImp implements UserService, UserDetailsService {
 
     private final UserDao userDao;
+    private RoleService roleService;
 
     @Autowired
-    public UserServiceImp(UserDao userDao) {
+    public UserServiceImp(UserDao userDao, RoleService roleService) {
         this.userDao = userDao;
+        this.roleService = roleService;
     }
 
     @Transactional
@@ -69,13 +71,24 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return User.fromUser(user);
     }
 
+    public Set<Role> getSetOfRoles(List<String> roles){
+        Set<Role> roleSet = new HashSet<>();
+        for (String id: roles) {
+            roleSet.add(roleService.getRoleById(Long.parseLong(id)));
+        }
+        return roleSet;
+    }
+
     @Override
     public User addRoles(User user, Role role) {
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         user.setRoles(roles);
         return user;
-
     }
 
+//    @Override
+//    public Set<Role> findAllRoles() {
+//        return entityManager.createQuery("From Role", Role.class).getResultList();;
+//    }
 }

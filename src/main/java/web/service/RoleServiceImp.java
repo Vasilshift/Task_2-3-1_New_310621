@@ -37,8 +37,8 @@ public class RoleServiceImp implements RoleService {
 
     @Transactional
     @Override
-    public List<Role> RolesList() {
-        return roleDao.RolesList();
+    public List<Role> getRolesList() {
+        return roleDao.getRolesList();
     }
 
     @Transactional
@@ -56,6 +56,12 @@ public class RoleServiceImp implements RoleService {
 
         System.out.println(user.getRoles());
     }
+
+
+    public Role getRoleById(Long id) {
+        return roleDao.getRoleById(id);
+    }
+
 
     @Transactional
     @Override
