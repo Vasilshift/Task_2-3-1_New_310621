@@ -78,15 +78,4 @@ public class AdminsController {
         return "redirect:/admin/";
     }
 
-//    @GetMapping("/{id}/profile")
-//    public String showUserProfileModal(@PathVariable("id") Long userId, Model model, RedirectAttributes attributes) {
-//        try {
-//            model.addAttribute("allRoles", userService.getSetOfRoles());
-//            model.addAttribute("user", userService.findUser(userId));
-//            return "fragments/user-form";
-//        } catch (IllegalArgumentException e) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
-//        }
-//    }
-
 }

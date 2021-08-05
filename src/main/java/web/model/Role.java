@@ -17,14 +17,9 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String name;
 
-//    @Transient
-//    @ManyToMany(mappedBy = "roles")
-//    private Collection<User> users;
-
     public Role(int id, String name) {
         this.id = id;
         this.name = name;
-        //this.users = users;
     }
 
     public String getRolename() {
@@ -42,14 +37,6 @@ public class Role implements GrantedAuthority {
     public void setId(int id) {
         this.id = id;
     }
-
-//    //public Collection<User> getUsers() {
-//        return users;
-//    }
-//
-//    //public void setUsers(Collection<User> users) {
-//        this.users = users;
-//    }
 
     @Override
     public String getAuthority() {

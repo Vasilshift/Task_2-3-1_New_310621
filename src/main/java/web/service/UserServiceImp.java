@@ -87,8 +87,4 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return user;
     }
 
-//    @Override
-//    public Set<Role> findAllRoles() {
-//        return entityManager.createQuery("From Role", Role.class).getResultList();;
-//    }
 }

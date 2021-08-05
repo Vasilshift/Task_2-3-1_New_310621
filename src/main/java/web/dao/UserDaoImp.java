@@ -51,11 +51,4 @@ public class UserDaoImp implements UserDao {
         return query.getResultList().stream().findAny().orElse(null);
     }
 
-//    @Override
-//    public void addRoles(String role) {
-//        entityManager.persist(role);
-//    }
-
-
-
 }

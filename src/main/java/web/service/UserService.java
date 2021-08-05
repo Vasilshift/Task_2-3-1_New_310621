@@ -24,5 +24,4 @@ public interface UserService {
 
     Set<Role> getSetOfRoles(List<String> roles);
 
-//    Set<Role> findAllRoles();
 }
