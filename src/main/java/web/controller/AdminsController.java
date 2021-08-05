@@ -14,7 +14,6 @@ import java.util.Set;
 @RequestMapping("/admin")
 public class AdminsController {
 
-
     private final UserService userService;
     private final RoleService roleService;
 
@@ -41,25 +40,12 @@ public class AdminsController {
         return "admin/new";
     }
 
-//    @PostMapping("/new")
-//    public String add(@ModelAttribute("user") User user,
-//                      @RequestParam(required = false, name = "roleAdmin") String roleAdmin
-//    ) {
-//        if (roleAdmin != null) {
-//            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
-//        } else {
-//            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
-//        }
-//        return "redirect:/admin/";
-//    }
-
-
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user,
                           @RequestParam("roleView") Set<String> roleView ) {
         if (roleView.contains("roleAdmin")) {
             userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
-        } else if (roleView.contains("roleUser")){
+        } else if (roleView.contains("roleUser")) {
             userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
         }
         return "redirect:/admin";
@@ -74,13 +60,12 @@ public class AdminsController {
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id,
-                         @RequestParam(required = false, name = "roleAdmin") String roleAdmin,
-                         @RequestParam(required = false, name = "roleUser") String roleUser) {
+                         @RequestParam("roleView") Set<String> roleView) {
 
-        if (roleAdmin != null) {
+        if (roleView.contains("roleAdmin")) {
             userService.update(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")), id);
         }
-        if (roleUser != null) {
+        if (roleView.contains("roleUser")) {
             userService.update(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")), id);
         }
 
