@@ -13,7 +13,8 @@ public class RoleDaoImp implements RoleDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public RoleDaoImp() {}
+    public RoleDaoImp() {
+    }
 
     @Override
     public Role getRoleByRolename(String name) {
@@ -42,4 +43,13 @@ public class RoleDaoImp implements RoleDao {
     public Role getRoleById(Long id) {
         return entityManager.find(Role.class, id);
     }
+
+//    @Override
+//    public void updateRoles(String[] roles) {
+//        entityManager.merge(roles);
+//    }
+
+
+
+
 }

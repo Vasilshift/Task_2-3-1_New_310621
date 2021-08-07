@@ -1,5 +1,6 @@
 package web.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Set;
 
-//@EqualsAndHashCode
+@EqualsAndHashCode(of = "name")
 @Getter
 @Setter
 @Entity
@@ -23,16 +24,12 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                '}';
+        return name.substring(5);
     }
 
     public Role(int id, String name, Set<User> users) {
@@ -45,4 +42,8 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return name;
     }
+
+
+
+
 }

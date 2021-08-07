@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import web.model.Role;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -26,6 +28,7 @@ public class AdminsController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("users", userService.index());
+
         return "admin/index";
     }
 
@@ -42,46 +45,35 @@ public class AdminsController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam("roleView") Set<String> roleView ) {
-        if (roleView.contains("roleAdmin")) {
-            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
-        } else if (roleView.contains("roleUser")) {
-            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
-        }
+                          @RequestParam("roleView") String[] roleView ) {
 
-        if (roleView.contains("roleAdmin") & roleView.contains("roleUser")) {
-//            List<String> roles = new ArrayList<>();
-//            roles.add("ROLE_ADMIN");
-//            roles.add("ROLE_USER");
-            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
-            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
-            //System.out.println(roles);
-        }
-
-
-
-        System.out.println(user);
-
+        userService.addRolesToUser(user, roleView);
+        userService.add(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUser(id));
-
         return "admin/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id,
-                         @RequestParam("roleView") Set<String> roleView) {
+                         @RequestParam("roleView") String[] roleView) {
 
-        if (roleView.contains("roleAdmin")) {
-            userService.update(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")), id);
+        Set<Role> roleList = new HashSet<>();
+        for (String role : roleView) {
+            if (role.equals("ROLE_ADMIN")) {
+                roleList.add(roleService.getRoleByRolename("ROLE_ADMIN"));
+            } else if (role.equals("ROLE_USER")) {
+                roleList.add(roleService.getRoleByRolename("ROLE_USER"));
+            }
         }
-        if (roleView.contains("roleUser")) {
-            userService.update(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")), id);
-        }
+        user.setRoles(roleList);
+        userService.update(user, id);
+
+
 
         return "redirect:/admin/";
     }

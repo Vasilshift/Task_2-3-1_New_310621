@@ -15,6 +15,7 @@ import java.util.Set;
 public class RoleServiceImp implements RoleService {
 
     private RoleDao roleDao;
+    private RoleService roleService;
 
     @Autowired
     public RoleServiceImp(RoleDao roleDao) {
@@ -23,6 +24,11 @@ public class RoleServiceImp implements RoleService {
 
     public RoleDao getRoleDao() {
         return roleDao;
+    }
+
+
+    public RoleServiceImp(RoleService roleService) {
+        this.roleService = roleService;
     }
 
     public void setRoleDao(RoleDao roleDao) {
@@ -43,7 +49,7 @@ public class RoleServiceImp implements RoleService {
 
     @Transactional
     @Override
-    public void setupRoles(User user, String roleAdmin, String roleUser) {
+    public Role setupRoles(User user, String roleAdmin, String roleUser) {
         Set<Role> roles = new HashSet<>();
 
         if (roleAdmin.equals("ROLE_ADMIN")) {
@@ -60,6 +66,7 @@ public class RoleServiceImp implements RoleService {
         user.setRoles(roles);
 
         System.out.println(user.getRoles());
+        return null;
     }
 
 
@@ -74,8 +81,23 @@ public class RoleServiceImp implements RoleService {
         roleDao.addRole(role);
     }
 
+    @Transactional
     @Override
     public void updateRole(Role role) {
         roleDao.updateRole(role);
     }
+
+//    @Override
+//    public void updateRoles(String[] roleView) {
+//        Set<Role> roleList = new HashSet<>();
+//        for (String role : roleView) {
+//
+//            if (role.equals("ROLE_ADMIN")) {
+//                roleList.add(roleService.getRoleByRolename("ROLE_ADMIN"));
+//            } else if (role.equals("ROLE_USER")) {
+//                roleList.add(roleService.getRoleByRolename("ROLE_USER"));
+//            }
+//        }
+//        roles.setRoles(roleList);
+//    }
 }

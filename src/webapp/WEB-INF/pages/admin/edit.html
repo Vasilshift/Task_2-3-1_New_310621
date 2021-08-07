@@ -16,18 +16,19 @@
     <label for="name">Enter password: </label>
     <input type="text" th:field="*{password}" id="password"/>
 
-        <label>
-            <input type="checkbox" name="roleView"
-                   th:value=roleAdmin
-                   th:text="Admin">
-        </label>
+    <label>
+        <input type="checkbox"
+               name="roleView"
+               th:value = "ROLE_ADMIN"
+               th:text="Admin">
+    </label>
 
-        <label>
-            <input type="checkbox"
-                   name="roleView"
-                   th:value= roleUser
-                   th:text="User">
-        </label>
+    <label>
+        <input type="checkbox"
+               name="roleView"
+               th:value = "ROLE_USER"
+               th:text="User">
+    </label>
 
     <input type="submit" value="Update!">
 

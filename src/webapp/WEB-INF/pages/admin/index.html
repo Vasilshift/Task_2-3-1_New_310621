@@ -22,10 +22,11 @@
   <tr th:each="user : ${users}">
     <td><span th:text="${user.id}"> user </span></td>
     <td><span th:text="${user.username}"> username </span></td>
+    <td><span th:text="${user.getAuthorities()}"> roles </span></td>
 
 
-<!--      <td each="role : ${user.getRoles()}">-->
-<!--        <span text="${user.roles}"></span>-->
+<!--      <td >-->
+<!--        <span th:each="role : ${users}" th:text="${role.name}"></span>-->
 <!--      </td>-->
 
 

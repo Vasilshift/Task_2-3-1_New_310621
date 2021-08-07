@@ -11,11 +11,14 @@ public interface RoleService {
 
     List<Role> getRolesList();
 
-    void setupRoles(User user, String roleAdmin, String roleUser);
+    Role setupRoles(User user, String roleAdmin, String roleUser);
 
     void addRole(Role role);
 
     void updateRole(Role role);
 
     Role getRoleById(Long id);
+
+
+//    void updateRoles(String[] roleView);
 }

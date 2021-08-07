@@ -15,4 +15,6 @@ public interface RoleDao {
     void updateRole(Role role);
 
     Role getRoleById(Long id);
+
+//    void updateRoles(String[] roles);
 }
