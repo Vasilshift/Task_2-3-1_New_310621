@@ -52,6 +52,11 @@ public class RoleServiceImp implements RoleService {
         if (roleUser.equals("ROLE_USER")) {
             roles.add(getRoleByRolename("ROLE_USER"));
         }
+
+        if (roleAdmin.equals("ROLE_ADMIN") & roleAdmin.equals("ROLE_USER")) {
+            roles.add(getRoleByRolename("ROLE_USER"));
+            roles.add(getRoleByRolename("ROLE_ADMIN"));
+        }
         user.setRoles(roles);
 
         System.out.println(user.getRoles());

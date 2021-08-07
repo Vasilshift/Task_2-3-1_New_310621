@@ -1,9 +1,15 @@
 package web.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Set;
 
+//@EqualsAndHashCode
+@Getter
+@Setter
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -17,25 +23,22 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String name;
 
-    public Role(int id, String name) {
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set<User> users;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", users=" + users +
+                '}';
+    }
+
+    public Role(int id, String name, Set<User> users) {
         this.id = id;
         this.name = name;
-    }
-
-    public String getRolename() {
-        return name;
-    }
-
-    public void setRolename(String name) {
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.users = users;
     }
 
     @Override

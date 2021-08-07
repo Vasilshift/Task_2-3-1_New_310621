@@ -48,6 +48,20 @@ public class AdminsController {
         } else if (roleView.contains("roleUser")) {
             userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
         }
+
+        if (roleView.contains("roleAdmin") & roleView.contains("roleUser")) {
+//            List<String> roles = new ArrayList<>();
+//            roles.add("ROLE_ADMIN");
+//            roles.add("ROLE_USER");
+            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_ADMIN")));
+            userService.add(userService.addRoles(user, roleService.getRoleByRolename("ROLE_USER")));
+            //System.out.println(roles);
+        }
+
+
+
+        System.out.println(user);
+
         return "redirect:/admin";
     }
 
