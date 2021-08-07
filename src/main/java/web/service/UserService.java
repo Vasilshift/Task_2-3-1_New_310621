@@ -1,10 +1,8 @@
 package web.service;
 
-import web.model.Role;
 import web.model.User;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserService {
 
@@ -21,9 +19,5 @@ public interface UserService {
     User findUserByUsername(String username);
 
     void addRolesToUser(User user, String[] roleView);
-
-    User addRoles(User user, Role role);
-
-    Set<Role> getSetOfRoles(List<String> roles);
 
 }

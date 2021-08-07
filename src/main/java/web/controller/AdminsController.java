@@ -4,13 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.model.Role;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -62,19 +58,8 @@ public class AdminsController {
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id,
                          @RequestParam("roleView") String[] roleView) {
 
-        Set<Role> roleList = new HashSet<>();
-        for (String role : roleView) {
-            if (role.equals("ROLE_ADMIN")) {
-                roleList.add(roleService.getRoleByRolename("ROLE_ADMIN"));
-            } else if (role.equals("ROLE_USER")) {
-                roleList.add(roleService.getRoleByRolename("ROLE_USER"));
-            }
-        }
-        user.setRoles(roleList);
+        user.setRoles(roleService.updateRoles(roleView));
         userService.update(user, id);
-
-
-
         return "redirect:/admin/";
     }
 

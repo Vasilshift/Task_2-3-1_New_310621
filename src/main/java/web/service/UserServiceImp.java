@@ -18,7 +18,7 @@ import java.util.Set;
 public class UserServiceImp implements UserService, UserDetailsService {
 
     private final UserDao userDao;
-    private RoleService roleService;
+    private final RoleService roleService;
 
     @Autowired
     public UserServiceImp(UserDao userDao, RoleService roleService) {
@@ -71,14 +71,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return User.fromUser(user);
     }
 
-    public Set<Role> getSetOfRoles(List<String> roles){
-        Set<Role> roleSet = new HashSet<>();
-        for (String id: roles) {
-            roleSet.add(roleService.getRoleById(Long.parseLong(id)));
-        }
-        return roleSet;
-    }
-
     @Override
     public void addRolesToUser(User user, String[] roleView) {
         Set<Role> roleList = new HashSet<>();
@@ -92,11 +84,4 @@ public class UserServiceImp implements UserService, UserDetailsService {
         user.setRoles(roleList);
     }
 
-    @Override
-    public User addRoles(User user, Role role) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
-        user.setRoles(roles);
-        return user;
-    }
 }

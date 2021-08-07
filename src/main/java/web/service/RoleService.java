@@ -1,9 +1,9 @@
 package web.service;
 
 import web.model.Role;
-import web.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RoleService {
 
@@ -11,14 +11,11 @@ public interface RoleService {
 
     List<Role> getRolesList();
 
-    Role setupRoles(User user, String roleAdmin, String roleUser);
-
     void addRole(Role role);
 
     void updateRole(Role role);
 
     Role getRoleById(Long id);
 
-
-//    void updateRoles(String[] roleView);
+    Set<Role> updateRoles(String[] roleView);
 }
