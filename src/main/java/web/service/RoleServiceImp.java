@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.RoleDao;
 import web.model.Role;
-import web.model.User;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,19 +15,20 @@ public class RoleServiceImp implements RoleService {
 
     private RoleDao roleDao;
 
-    @Autowired
-    private RoleService roleService;
-
     public RoleServiceImp(RoleService roleService) {
         this.roleService = roleService;
     }
 
     @Autowired
-    public RoleServiceImp( RoleDao roleDao) {
+    private RoleService roleService;
+    
+
+    @Autowired
+    public RoleServiceImp(RoleDao roleDao) {
         this.roleDao = roleDao;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public Role getRoleByName(String name) {
         return roleDao.getRoleByName(name);
@@ -71,17 +71,5 @@ public class RoleServiceImp implements RoleService {
         }
         return roleList;
     }
-    @Override
-    public void addRolesToUser(User user, String[] roleView) {
-        Set<Role> roleList = new HashSet<>();
-        for (String role : roleView) {
-            if (role.equals("ROLE_ADMIN")) {
-                roleList.add(roleService.getRoleByName("ROLE_ADMIN"));
-            } else if (role.equals("ROLE_USER")) {
-                roleList.add(roleService.getRoleByName("ROLE_USER"));
-            }
-        }
-        user.setRoles(roleList);
-    }
-    
+
 }

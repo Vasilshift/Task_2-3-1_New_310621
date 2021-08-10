@@ -21,8 +21,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
     private RoleService roleService;
 
     @Autowired
-    public void setUserDaoAndEncoder(UserDao userDao,
-                                     RoleService roleService) {
+    public void UserServiceImp(UserDao userDao, RoleService roleService) {
         this.userDao = userDao;
         this.roleService = roleService;
     }
@@ -71,17 +70,17 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return User.fromUser(user);
     }
 
-//    @Override
-//    public void addRolesToUser(User user, String[] roleView) {
-//        Set<Role> roleList = new HashSet<>();
-//        for (String role : roleView) {
-//            if (role.equals("ROLE_ADMIN")) {
-//                roleList.add(roleService.getRoleByName("ROLE_ADMIN"));
-//            } else if (role.equals("ROLE_USER")) {
-//                roleList.add(roleService.getRoleByName("ROLE_USER"));
-//            }
-//        }
-//        user.setRoles(roleList);
-//    }
+    @Override
+    public void addRolesToUser(User user, String[] roleView) {
+        Set<Role> roleList = new HashSet<>();
+        for (String role : roleView) {
+            if (role.equals("ROLE_ADMIN")) {
+                roleList.add(roleService.getRoleByName("ROLE_ADMIN"));
+            } else if (role.equals("ROLE_USER")) {
+                roleList.add(roleService.getRoleByName("ROLE_USER"));
+            }
+        }
+        user.setRoles(roleList);
+    }
 
 }

@@ -41,7 +41,7 @@ public class AdminsController {
     public String addUser(@ModelAttribute("user") User user,
                           @RequestParam("roleView") String[] roleView ) {
 
-        roleService.addRolesToUser(user, roleView);
+        userService.addRolesToUser(user, roleView);
         userService.add(user);
         return "redirect:/admin";
     }

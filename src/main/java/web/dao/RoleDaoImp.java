@@ -1,6 +1,5 @@
 package web.dao;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import web.model.Role;
 
@@ -9,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Qualifier("roledaoimp")
 public class RoleDaoImp implements RoleDao {
 
     @PersistenceContext

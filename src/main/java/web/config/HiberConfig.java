@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(value = "web")
+@ComponentScan("web")
 @EnableTransactionManagement
 @PropertySource(value = "classpath:db.properties")
 public class HiberConfig {

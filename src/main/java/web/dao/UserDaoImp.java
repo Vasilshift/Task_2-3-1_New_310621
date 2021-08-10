@@ -1,15 +1,14 @@
 package web.dao;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import web.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-@Qualifier("userdaoimp")
 public class UserDaoImp implements UserDao {
 
     @PersistenceContext
