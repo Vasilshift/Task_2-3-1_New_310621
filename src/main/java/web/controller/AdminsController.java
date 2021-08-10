@@ -1,6 +1,5 @@
 package web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ public class AdminsController {
     private final UserService userService;
     private final RoleService roleService;
 
-    @Autowired
     public AdminsController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
@@ -43,7 +41,7 @@ public class AdminsController {
     public String addUser(@ModelAttribute("user") User user,
                           @RequestParam("roleView") String[] roleView ) {
 
-        userService.addRolesToUser(user, roleView);
+        roleService.addRolesToUser(user, roleView);
         userService.add(user);
         return "redirect:/admin";
     }

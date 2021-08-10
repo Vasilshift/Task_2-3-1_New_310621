@@ -18,6 +18,6 @@ public interface UserService {
 
     User findUserByUsername(String username);
 
-    void addRolesToUser(User user, String[] roleView);
+    //void addRolesToUser(User user, String[] roleView);
 
 }

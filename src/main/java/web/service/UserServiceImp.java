@@ -17,22 +17,22 @@ import java.util.Set;
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
 
-    private final UserDao userDao;
-    private final RoleService roleService;
+    private UserDao userDao;
+    private RoleService roleService;
 
     @Autowired
-    public UserServiceImp(UserDao userDao, RoleService roleService) {
+    public void setUserDaoAndEncoder(UserDao userDao,
+                                     RoleService roleService) {
         this.userDao = userDao;
         this.roleService = roleService;
     }
 
-    @Transactional
     @Override
     public List<User> index() {
         return userDao.index();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public User getUser(int id) {
         return userDao.getUser(id);
@@ -71,17 +71,17 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return User.fromUser(user);
     }
 
-    @Override
-    public void addRolesToUser(User user, String[] roleView) {
-        Set<Role> roleList = new HashSet<>();
-        for (String role : roleView) {
-            if (role.equals("ROLE_ADMIN")) {
-                roleList.add(roleService.getRoleByRolename("ROLE_ADMIN"));
-            } else if (role.equals("ROLE_USER")) {
-                roleList.add(roleService.getRoleByRolename("ROLE_USER"));
-            }
-        }
-        user.setRoles(roleList);
-    }
+//    @Override
+//    public void addRolesToUser(User user, String[] roleView) {
+//        Set<Role> roleList = new HashSet<>();
+//        for (String role : roleView) {
+//            if (role.equals("ROLE_ADMIN")) {
+//                roleList.add(roleService.getRoleByName("ROLE_ADMIN"));
+//            } else if (role.equals("ROLE_USER")) {
+//                roleList.add(roleService.getRoleByName("ROLE_USER"));
+//            }
+//        }
+//        user.setRoles(roleList);
+//    }
 
 }

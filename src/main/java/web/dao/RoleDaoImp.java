@@ -1,5 +1,6 @@
 package web.dao;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import web.model.Role;
 
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Qualifier("roledaoimp")
 public class RoleDaoImp implements RoleDao {
 
     @PersistenceContext
@@ -17,7 +19,7 @@ public class RoleDaoImp implements RoleDao {
     }
 
     @Override
-    public Role getRoleByRolename(String name) {
+    public Role getRoleByName(String name) {
         return entityManager.createQuery("select r from Role r where r.name = :username", Role.class)
                 .setParameter("username", name)
                 .getSingleResult();
