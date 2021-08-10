@@ -69,5 +69,4 @@ public class RoleServiceImp implements RoleService {
         }
         return roleList;
     }
-
 }
