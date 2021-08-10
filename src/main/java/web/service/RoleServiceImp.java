@@ -19,9 +19,7 @@ public class RoleServiceImp implements RoleService {
         this.roleService = roleService;
     }
 
-    @Autowired
     private RoleService roleService;
-    
 
     @Autowired
     public RoleServiceImp(RoleDao roleDao) {
