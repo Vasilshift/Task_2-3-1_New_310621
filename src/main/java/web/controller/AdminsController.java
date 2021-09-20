@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,12 @@ public class AdminsController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminsController(UserService userService, RoleService roleService) {
+    public AdminsController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping()
@@ -42,6 +45,7 @@ public class AdminsController {
                           @RequestParam("roleView") String[] roleView ) {
 
         userService.addRolesToUser(user, roleView);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.add(user);
         return "redirect:/admin";
     }
@@ -56,15 +60,17 @@ public class AdminsController {
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id,
                          @RequestParam("roleView") String[] roleView) {
 
-        user.setRoles(roleService.updateRoles(roleView));
+        //user.setRoles(roleService.updateRoles(roleView));
+        userService.addRolesToUser(user, roleView);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.update(user, id);
-        return "redirect:/admin/";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:/admin/";
+        return "redirect:/admin";
     }
 
 }
